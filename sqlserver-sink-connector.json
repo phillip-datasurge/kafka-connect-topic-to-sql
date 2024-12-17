@@ -1,0 +1,27 @@
+{
+  "name": "sqlserver-sink-connector",
+  "config": {
+      "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+      "tasks.max": "1",
+      "topics": "sample.second",
+      "dialect.name": "SqlServerDatabaseDialect",
+      "connection.driver.class": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+      "connection.url": "jdbc:sqlserver://sqlserver:1433;databaseName=master;encrypt=false",
+      "connection.user": "sa",
+      "connection.password": "Password1234!",
+      "connection.ds.pool.size": 5,
+      "auto.create": "true",
+      "auto.evolve": "true",
+      "insert.mode": "upsert",
+      "delete.enabled": "false",
+      "pk.mode": "record_value",
+      "pk.fields": "ID",
+      "table.name.format": "SampleMessages",
+      "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "value.converter": "io.confluent.connect.avro.AvroConverter",
+      "value.converter.schema.registry.url": "http://schema-registry:8081",
+      "transforms": "ExtractId",
+      "transforms.ExtractId.type": "org.apache.kafka.connect.transforms.ValueToKey",
+      "transforms.ExtractId.fields": "ID"
+  }
+}

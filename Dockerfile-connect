@@ -1,0 +1,4 @@
+# NOTE: This Dockerfile is required because plugins must be installed BEFORE the image is built
+FROM confluentinc/cp-kafka-connect:7.5.0
+
+RUN confluent-hub install confluentinc/kafka-connect-jdbc:10.7.6 --no-prompt
